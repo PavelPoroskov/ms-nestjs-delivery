@@ -1,0 +1,10 @@
+
+npm i -g @nestjs/cli
+nest new uber-services
+    choices: npm
+cd uber-services
+npm run start
+browser http://localhost:3000/
+
+
+
