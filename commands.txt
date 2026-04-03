@@ -6,5 +6,10 @@ cd uber-services
 npm run start
 browser http://localhost:3000/
 
+// convert ot monorepo
+cd uber-services
+nest generate app loggin-service
+nest generate app rider-service
+
 
 
