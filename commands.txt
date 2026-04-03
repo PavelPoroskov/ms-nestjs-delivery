@@ -11,5 +11,9 @@ cd uber-services
 nest generate app loggin-service
 nest generate app rider-service
 
+npm run start logging-service // terminal one 
+    browser http://localhost:3002/
+nest start rider-service // terminal two 
+    browser http://localhost:3001/
 
 
