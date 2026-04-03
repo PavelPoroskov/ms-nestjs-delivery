@@ -1,0 +1,21 @@
+services:
+  mongodb:
+    image: mongodb/mongodb-community-server:7.0-ubi9-slim
+    restart: always
+    env_file: .env
+    environment:
+      - MONGODB_INITDB_ROOT_USERNAME=$MONGODB_USERNAME
+      - MONGODB_INITDB_ROOT_PASSWORD=$MONGODB_PASSWORD
+    volumes:
+      - dbdata:/data/db:z
+    ports:
+      - "27017:27017"
+    networks:
+      - logging-network
+
+networks:
+  logging-network:
+    driver: bridge
+
+volumes:
+  dbdata:

@@ -17,3 +17,17 @@ nest start rider-service // terminal two
     browser http://localhost:3001/
 
 
+cd uber-services/apps/logging-service
+podman-compose up
+
+[mongodb] | ERROR: Detected Linux kernel 6.19.10-100.fc42.x86_64. 
+MongoDB 8.0+ utilizes the tcmalloc allocator which has a known issue with the v6.19 and newer Linux kernel. This container will not start by default on v6.19+.
+solution: mongodb/mongodb-community-server:8.2-ubi8-slim  -> 7.0-ubi9-slim
+
+cd uber-services/apps/logging-service
+npm i mongoose @nestjs/mongoose
+// it was installed to root package.json
+
+// after set mongo_connection_string in app
+nest start logging-service -w
+// Nest application successfully started
