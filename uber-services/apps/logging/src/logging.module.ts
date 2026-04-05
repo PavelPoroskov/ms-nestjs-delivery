@@ -2,14 +2,16 @@ import { Module } from '@nestjs/common';
 import { LoggingController } from './logging.controller';
 import { LoggingService } from './logging.service';
 import { MongooseModule } from '@nestjs/mongoose';
+import { ConfigModule } from '@nestjs/config';
 
-// TODO get mongo_connection_string from env
-//      'mongodb://frybender:lila27zolberg37uncle@127.0.0.1:27017/logs_db',
 @Module({
   imports: [
-    MongooseModule.forRoot(
-      'mongodb://frybender:lila27zolberg37uncle@127.0.0.1:27017/logs_db',
-    ),
+    ConfigModule.forRoot(),
+    MongooseModule.forRoot('mongodb://127.0.0.1:27017', {
+      user: process.env.MONGODB_USERNAME,
+      pass: process.env.MONGODB_PASSWORD,
+      dbName: 'logs_db',
+    }),
   ],
   controllers: [LoggingController],
   providers: [LoggingService],

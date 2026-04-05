@@ -1,10 +1,13 @@
 services:
   mongodb:
-    image: mongodb/mongodb-community-server:7.0-ubi9-slim
+    image: mongo:7
+    restart: always
     env_file: .env
     environment:
-      - MONGODB_INITDB_ROOT_USERNAME=$MONGODB_USERNAME
-      - MONGODB_INITDB_ROOT_PASSWORD=$MONGODB_PASSWORD
+      # - MONGODB_INITDB_ROOT_USERNAME=$MONGODB_USERNAME
+      # - MONGODB_INITDB_ROOT_PASSWORD=$MONGODB_PASSWORD
+      - MONGO_INITDB_ROOT_USERNAME=$MONGODB_USERNAME
+      - MONGO_INITDB_ROOT_PASSWORD=$MONGODB_PASSWORD
     volumes:
       - dbdata:/data/db:z
     ports:
