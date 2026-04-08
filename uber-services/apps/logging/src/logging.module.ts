@@ -3,6 +3,7 @@ import { LoggingController } from './logging.controller';
 import { LoggingService } from './logging.service';
 import { MongooseModule } from '@nestjs/mongoose';
 import { ConfigModule } from '@nestjs/config';
+import { RiderCoordinatesModule } from './rider-coordinates/rider-coordinates.module';
 
 @Module({
   imports: [
@@ -12,6 +13,7 @@ import { ConfigModule } from '@nestjs/config';
       pass: process.env.MONGODB_PASSWORD,
       dbName: 'logs_db',
     }),
+    RiderCoordinatesModule,
   ],
   controllers: [LoggingController],
   providers: [LoggingService],

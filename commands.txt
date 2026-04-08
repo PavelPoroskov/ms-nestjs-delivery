@@ -11,26 +11,52 @@ cd uber-services
 nest generate app loggin-service
 nest generate app rider-service
 
-npm run start logging-service // terminal one 
+npm run start logging-service // terminal one
     browser http://localhost:3002/
-nest start rider-service // terminal two 
+nest start rider-service // terminal two
     browser http://localhost:3001/
 
 
 cd uber-services/apps/logging-service
 podman-compose up
 
-[mongodb] | ERROR: Detected Linux kernel 6.19.10-100.fc42.x86_64. 
+[mongodb] | ERROR: Detected Linux kernel 6.19.10-100.fc42.x86_64.
 MongoDB 8.0+ utilizes the tcmalloc allocator which has a known issue with the v6.19 and newer Linux kernel. This container will not start by default on v6.19+.
 solution: mongodb/mongodb-community-server:8.2-ubi8-slim  -> mongo:7
 
-cd uber-services/apps/logging-service
+cd uber-services/apps/logging
 npm i mongoose @nestjs/mongoose
 // it was installed to root package.json
 
 // after set mongo_connection_string in app
-nest start logging-service -w
+nest start logging -w
 // Nest application successfully started
 
 source .env
 podman-compose up
+
+cd uber-services/apps/logging/src
+nest g module rider-coordinates
+nest g controller rider-coordinates
+nest g service rider-coordinates
+
+cd uber-services/apps/logging/
+podman-compose up // terminal 01
+cd uber-services
+nest start logging // terminal 02
+curl http://127.0.0.1:3002/  // terminal 03
+curl http://127.0.0.1:3002/rider-coordinates
+
+npm i class-transformer class-validator
+
+// test with correct data
+curl -H "Content-Type: application/json" \
+  --request POST \
+  --data '{"lat":11.11, "lng": 22.22, "rider":"Bob"}' \
+  http://127.0.0.1:3002/rider-coordinates
+
+// test with incorrect data
+curl -H "Content-Type: application/json" \
+  --request POST \
+  --data '{"lng": 22.22, "rider":"Bob"}' \
+  http://127.0.0.1:3002/rider-coordinates
