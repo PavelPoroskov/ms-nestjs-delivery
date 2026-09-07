@@ -2,16 +2,32 @@ import { Module } from '@nestjs/common';
 import { LoggingController } from './logging.controller';
 import { LoggingService } from './logging.service';
 import { MongooseModule } from '@nestjs/mongoose';
-import { ConfigModule } from '@nestjs/config';
+import { ConfigModule, ConfigService } from '@nestjs/config';
 import { RiderCoordinatesModule } from './rider-coordinates/rider-coordinates.module';
 
 @Module({
   imports: [
-    ConfigModule.forRoot(),
-    MongooseModule.forRoot('mongodb://127.0.0.1:27017', {
-      user: process.env.MONGODB_USERNAME,
-      pass: process.env.MONGODB_PASSWORD,
-      dbName: 'logs_db',
+    ConfigModule.forRoot({
+      envFilePath: 'apps/logging/.env',
+    }),
+    MongooseModule.forRootAsync({
+      imports: [ConfigModule],
+      // eslint-disable-next-line @typescript-eslint/require-await
+      useFactory: async (configService: ConfigService) => {
+        // console.log('useFactory', 'MONGODB_USERNAME');
+        // console.log(
+        //   '***',
+        //   configService.get<string>('MONGODB_USERNAME'),
+        //   '***',
+        // );
+        return {
+          uri: 'mongodb://127.0.0.1:27017',
+          user: configService.get<string>('MONGODB_USERNAME'),
+          pass: configService.get<string>('MONGODB_PASSWORD'),
+          dbName: 'logs_db',
+        };
+      },
+      inject: [ConfigService],
     }),
     RiderCoordinatesModule,
   ],
