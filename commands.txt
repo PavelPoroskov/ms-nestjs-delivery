@@ -60,3 +60,6 @@ curl -H "Content-Type: application/json" \
   --request POST \
   --data '{"lng": 22.22, "rider":"Bob"}' \
   http://127.0.0.1:3002/rider-coordinates
+
+
+nest generate app rider
