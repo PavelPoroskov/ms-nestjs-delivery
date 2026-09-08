@@ -8,7 +8,7 @@ export class RiderCoordinatesController {
 
   @Get()
   getRiderCoordinates() {
-    return 'hello from getRiderCoordinates()';
+    return this.coordinatesService.getRiderCoordinates();
   }
 
   @Post()

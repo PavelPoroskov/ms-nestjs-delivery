@@ -32,8 +32,8 @@ npm i mongoose @nestjs/mongoose
 nest start logging -w
 // Nest application successfully started
 
-source .env
-podman-compose up
+cd apps/logging
+source .env && podman-compose up
 
 cd uber-services/apps/logging/src
 nest g module rider-coordinates
@@ -41,7 +41,7 @@ nest g controller rider-coordinates
 nest g service rider-coordinates
 
 cd uber-services/apps/logging/
-podman-compose up // terminal 01
+source .env && podman-compose up // terminal 01
 cd uber-services
 nest start logging // terminal 02
 curl http://127.0.0.1:3002/  // terminal 03
