@@ -11,3 +11,7 @@ cd uber-services
 nest generate app logging
 nest generate app rider
 
+cd uber-services/apps/logging/src
+nest g module rider-coordinates
+nest g controller rider-coordinates
+nest g service rider-coordinates
