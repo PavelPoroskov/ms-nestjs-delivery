@@ -63,3 +63,5 @@ curl -H "Content-Type: application/json" \
 
 
 nest generate app rider
+
+git mv uber-services uber-services0
