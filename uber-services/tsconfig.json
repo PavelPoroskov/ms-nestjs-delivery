@@ -17,6 +17,18 @@
     "skipLibCheck": true,
     "strict": true,
     "strictPropertyInitialization": false,
-    "types": ["vitest/globals", "node"]
-  }
+    "types": [
+      "vitest/globals",
+      "node"
+    ]
+  },
+  "files": [],
+  "references": [
+    {
+      "path": "./apps/uber-services/tsconfig.app.json"
+    },
+    {
+      "path": "./apps/logging/tsconfig.app.json"
+    }
+  ]
 }

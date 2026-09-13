@@ -7,3 +7,5 @@ nest new uber-services
 cd uber-services
 rm -rf .git // use .git in root folder
 
+cd uber-services
+nest generate app logging
