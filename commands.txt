@@ -1,0 +1,9 @@
+//generate with @nestjs/cli@12 with ESM Modules
+nest new uber-services
+  choose: npm
+  choose: auto-instrumented observability (@nestjs/observe) No
+  choose: ESM Modules (with vitest)
+
+cd uber-services
+rm -rf .git // use .git in root folder
+
