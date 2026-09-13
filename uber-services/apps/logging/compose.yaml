@@ -1,0 +1,17 @@
+services:
+  mongodb:
+    image: mongo:7
+    restart: always
+    env_file: .env
+    environment:
+      # - MONGODB_INITDB_ROOT_USERNAME=$MONGODB_USERNAME
+      # - MONGODB_INITDB_ROOT_PASSWORD=$MONGODB_PASSWORD
+      - MONGO_INITDB_ROOT_USERNAME=$MONGODB_USERNAME
+      - MONGO_INITDB_ROOT_PASSWORD=$MONGODB_PASSWORD
+    volumes:
+      - dbdata:/data/db:z
+    ports:
+      - "27017:27017"
+
+volumes:
+  dbdata:
