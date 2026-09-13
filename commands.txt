@@ -9,3 +9,5 @@ rm -rf .git // use .git in root folder
 
 cd uber-services
 nest generate app logging
+nest generate app rider
+
