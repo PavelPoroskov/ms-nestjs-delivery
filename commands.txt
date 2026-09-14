@@ -20,6 +20,7 @@ cd uber-services
 npm i mongoose @nestjs/mongoose
 npm i class-transformer class-validator
 npm i @nestjs/config
+npm i @nestjs/microservices
 
 
 // STARTING
