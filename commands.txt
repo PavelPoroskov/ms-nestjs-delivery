@@ -20,7 +20,6 @@ cd uber-services
 npm i mongoose @nestjs/mongoose
 npm i class-transformer class-validator
 npm i @nestjs/config
-npm i @nestjs/microservices
 
 
 // STARTING
@@ -52,3 +51,20 @@ curl -H "Content-Type: application/json" \
 
 curl -H "Content-Type: application/json" http://127.0.0.1:3002/rider-coordinates
 
+
+// STARTING
+// terminal 1
+cd uber-services/apps/logging
+source .env && podman-compose up
+// terminal 2
+cd uber-services
+nest start rider
+// terminal 3
+cd uber-services
+nest start logging
+// terminal 3
+curl -H "Content-Type: application/json" \
+  --request POST \
+  --data '{"lat":11.11, "lng": 22.22, "rider":"Bob"}' \
+  http://127.0.0.1:3002/rider-coordinates
+curl -H "Content-Type: application/json" http://127.0.0.1:3002/rider-coordinates/Bob
